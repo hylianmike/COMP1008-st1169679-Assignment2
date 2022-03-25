@@ -19,7 +19,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
-        CrewMember luffy = new CrewMember("Luffy", 19, true, "Gum Gum Fruit");
-        System.out.println(luffy);
     }
 }
