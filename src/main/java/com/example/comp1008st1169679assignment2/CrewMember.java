@@ -1,5 +1,7 @@
 package com.example.comp1008st1169679assignment2;
 
+import javafx.scene.image.Image;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +14,7 @@ public class CrewMember {
     private String role;
     private boolean devilFruit;
     private String power;
+    private Image image;
 
     public CrewMember(String name, int age, String role, boolean devilFruit, String power) {
         setName(name);
@@ -19,6 +22,7 @@ public class CrewMember {
         setRole(role);
         setDevilFruit(devilFruit);
         setPower(power);
+        image = new Image(getClass().getResource(String.format("img/people/%s.png", name)).toExternalForm());
     }
 
     public String getName() {
@@ -77,5 +81,9 @@ public class CrewMember {
             this.role = role;
         else
             throw new IllegalArgumentException("Role must be one of these: " + validRoles);
+    }
+
+    public Image getImage() {
+        return image;
     }
 }
