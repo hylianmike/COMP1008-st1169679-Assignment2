@@ -23,6 +23,18 @@ public class PirateCrew {
         flag = new Image(getClass().getResource(String.format("img/flags/%s.png", name.toLowerCase().substring(0, name.indexOf(" ")))).toExternalForm());
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCrew(ArrayList<CrewMember> crew) {
+        this.crew = crew;
+    }
+
+    public void setFlag(Image flag) {
+        this.flag = flag;
+    }
+
     public String getName() {
         return name;
     }
