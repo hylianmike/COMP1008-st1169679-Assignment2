@@ -122,6 +122,6 @@ class CrewMemberTest {
     @Test
     void setImageConstructor() {
         pirate = new CrewMember("Zoro", 25, "Fighter", 200_000_000, false, "Swordsmanship", "Slice", "Slice and Dice");
-        assertEquals("img/people/zoro.png", pirate.getImage());
+        assertEquals("img/people/zoro.png", pirate.getImageLocation());
     }
 }

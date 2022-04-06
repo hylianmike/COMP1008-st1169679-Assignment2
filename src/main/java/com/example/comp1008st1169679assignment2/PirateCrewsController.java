@@ -5,17 +5,19 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PirateCrewsController implements Initializable {
@@ -33,6 +35,9 @@ public class PirateCrewsController implements Initializable {
     private ListView<PirateCrew> crewList;
 
     @FXML
+    private ListView<PirateCrew> crewListTwo;
+
+    @FXML
     private ListView<CrewMember> pirateList;
 
     @FXML
@@ -41,9 +46,41 @@ public class PirateCrewsController implements Initializable {
     @FXML
     private Label pirateInfoLabel;
 
+    @FXML
+    private ComboBox<String> roleComboBox;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private TextField ageField;
+
+    @FXML
+    private TextField powerTextBox;
+
+    @FXML
+    private CheckBox devilFruitCheck;
+
+    @FXML
+    private Button addButton;
+
+    // creating all the pirate crews
+    private PirateCrew strawHats = new PirateCrew("Straw Hat Pirates", "Thousand Sunny");
+    private PirateCrew heartPirates = new PirateCrew("Heart Pirates", "Polar Tang");
+
+    // making an array of the pirate crews to add to the ListView object
+    private PirateCrew[] crews = new PirateCrew[]{strawHats, heartPirates};
+
     // overridden initialize method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        List<String> roles = CrewMember.getValidRoles();
+        for (int i = 0; i < roles.size(); i++) {
+            roles.set(i, roles.get(i).substring(0, 1).toUpperCase() + roles.get(i).substring(1));
+        }
+        roleComboBox.setItems(FXCollections.observableList(roles));
+
         // creating all the individual pirates
         CrewMember luffy = new CrewMember("Monkey D. Luffy", 19, "Captain", 1_500_000_000, true, "Gum-Gum Fruit", "Gum-Gum Pistol", "Red Hawk", "King-Kong Gun");
         CrewMember zoro = new CrewMember("Roronoa Zoro", 21, "Fighter", 320_000_000, false, "Three-Sword Style", "Iai Death Lion Song", "Purgatory Onigiri", "Asura: Dead Man's Game");
@@ -58,9 +95,7 @@ public class PirateCrewsController implements Initializable {
 
         CrewMember law = new CrewMember("Trafalgar Law", 26, "Captain", 500_000_000, true, "Op-Op Fruit", "Injection Shot", "Gamma Knife", "Puncture Wille");
 
-        // creating all the pirate crews
-        PirateCrew strawHats = new PirateCrew("Straw Hat Pirates", "Thousand Sunny");
-        PirateCrew heartPirates = new PirateCrew("Heart Pirates", "Polar Tang");
+
 
         // adding the pirates to their respective crews
         strawHats.add(luffy);
@@ -76,9 +111,9 @@ public class PirateCrewsController implements Initializable {
 
         heartPirates.add(law);
 
-        // making an array of the pirate crews to add to the ListView object
-        PirateCrew[] crews = new PirateCrew[]{strawHats, heartPirates};
+
         crewList.setItems(FXCollections.observableArrayList(crews));
+        crewListTwo.setItems(FXCollections.observableArrayList(crews));
 
         // this will run whenever a different item is selected in the list of crews
         crewList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSelection, newSelection) -> {
@@ -90,7 +125,7 @@ public class PirateCrewsController implements Initializable {
                 // set the list of pirates to be that of the selected crew
                 pirateList.setItems(FXCollections.observableList(newSelection.getCrew()));
                 // set the image of the pirate to the first one in the list
-                pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getCrew().get(0).getImage()).toExternalForm())));
+                pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getCrew().get(0).getImageLocation()).toExternalForm())));
                 pirateInfoLabel.setVisible(true);
                 pirateInfoLabel.setText(newSelection.getCrew().get(0).getData());
                 // set the ship ImageView to the corresponding pirate ship
@@ -103,12 +138,26 @@ public class PirateCrewsController implements Initializable {
         pirateList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSelection, newSelection) -> {
             try{
                 // set the image to the pirate object that is selected
-                pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getImage()).toExternalForm())));
+                pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getImageLocation()).toExternalForm())));
                 pirateInfoLabel.setText(newSelection.getData());
             }
             catch (NullPointerException ignored){}
         });
+
+        addButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                PirateCrew crew = crewListTwo.getSelectionModel().getSelectedItem();
+                int age = Integer.parseInt(ageField.getText());
+                crew.add(new CrewMember(nameField.getText(), age, roleComboBox.getValue(), age, devilFruitCheck.isSelected(), powerTextBox.getText()));
+                crew.getCrew().get(crew.getCrew().size() - 1).setImageLocation("img/people/blank.jpg");
+                crewList.setItems(FXCollections.observableArrayList(crews));
+                nameField.clear();
+                ageField.clear();
+                roleComboBox.getSelectionModel().selectFirst();
+                devilFruitCheck.setSelected(false);
+                powerTextBox.clear();
+            }
+        });
     }
 }
-
-//         image = new Image(getClass().getResource(String.format("img/people/%s.png", name.split(" ")[name.split(" ").length - 1].toLowerCase())).toExternalForm());

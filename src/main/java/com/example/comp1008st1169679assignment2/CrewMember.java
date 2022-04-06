@@ -154,18 +154,29 @@ public class CrewMember {
      * @param role Must be one of these choices: "Captain", "Fighter", "Navigator", "Doctor", "Chef", "Marksman", "Shipwright", "Helmsman", "Musician", "Archaeologist", "Other"
      */
     public void setRole(String role) {
-        List<String> validRoles = Arrays.asList("captain", "fighter", "navigator", "doctor", "chef", "marksman", "shipwright", "helmsman", "musician", "archaeologist", "other");
-        if (validRoles.contains(role.toLowerCase()))
+        if (getValidRoles().contains(role.toLowerCase()))
             this.role = role;
         else
-            throw new IllegalArgumentException("Role must be one of these: " + validRoles);
+            throw new IllegalArgumentException("Role must be one of these: " + getValidRoles());
+    }
+
+    public void setImageLocation(String imageLocation) {
+        imageLocation = imageLocation.trim();
+        if (imageLocation.startsWith("img/people/"))
+            this.imageLocation = imageLocation;
+        else
+            throw new IllegalArgumentException("File path must be in the img/peoples directory");
+    }
+
+    public static List<String> getValidRoles() {
+        return Arrays.asList("captain", "fighter", "navigator", "doctor", "chef", "marksman", "shipwright", "helmsman", "musician", "archaeologist", "other");
     }
 
     /**
      * Getter for the image instance variable
      * @return The image for the pirate in question
      */
-    public String getImage() {
+    public String getImageLocation() {
         return imageLocation;
     }
 
