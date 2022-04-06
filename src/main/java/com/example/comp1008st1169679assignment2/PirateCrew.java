@@ -9,7 +9,8 @@ public class PirateCrew {
     // name, list of pirates (crew) and jolly roger
     private String name, ship;
     private ArrayList<CrewMember> crew;
-    private Image flag;
+    private String flag;
+    private String shipLocation;
 
     /**
      * constructor for a Pirate Crew object. creates a new ArrayList for the crew. the parameter is used to render the image for the flag as well
@@ -17,8 +18,14 @@ public class PirateCrew {
      */
     public PirateCrew(String name, String ship){
         setName(name);
+        setShip(ship);
         crew = new ArrayList<>();
-        flag = new Image(getClass().getResource(String.format("img/flags/%s.png", name.toLowerCase().substring(0, name.indexOf(" ")))).toExternalForm());
+        flag = String.format("img/flags/%s.png", this.name.toLowerCase().substring(0, name.indexOf(" ")));
+        shipLocation = String.format("img/ships/%s.jpg", this.ship.split(" ")[ship.split(" ").length - 1]);
+    }
+
+    public String getShipLocation() {
+        return shipLocation;
     }
 
     public void setName(String name) {
@@ -35,11 +42,12 @@ public class PirateCrew {
     }
 
     public void setShip(String ship) {
-        this.ship = ship;
-    }
-
-    public void setFlag(Image flag) {
-        this.flag = flag;
+        ship = ship.trim();
+        if (ship.length() > 1){
+            this.ship = ship;
+        }
+        else
+            throw new IllegalArgumentException("Ship name must be at least 2 characters.");
     }
 
     public String getName() {
@@ -67,7 +75,7 @@ public class PirateCrew {
      * method to get the flag image
      * @return the image of the object (The crew's jolly roger)
      */
-    public Image getFlag() {
+    public String getFlag() {
         return flag;
     }
 

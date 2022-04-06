@@ -4,15 +4,55 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp1008st1169679assignment2.PirateCrewsController">
+<AnchorPane prefHeight="631.0" prefWidth="1022.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp1008st1169679assignment2.PirateCrewsController">
    <children>
-      <ImageView fx:id="flagImage" fitHeight="141.0" fitWidth="141.0" layoutX="384.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="pirateImage" fitHeight="357.0" fitWidth="200.0" layoutX="355.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="crewList" layoutX="63.0" layoutY="118.0" prefHeight="200.0" prefWidth="200.0" />
-      <ListView fx:id="pirateList" layoutX="63.0" layoutY="426.0" prefHeight="271.0" prefWidth="200.0" />
-      <Label layoutX="102.0" layoutY="39.0" text="Choose Your One Piece Character">
+      <Label layoutX="81.0" layoutY="14.0" text="Choose Your One Piece Character...">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="31.0" layoutY="78.0" prefHeight="524.0" prefWidth="210.0" styleClass="listBox">
+         <children>
+            <Label styleClass="labelized" text="Choose Your Crew" />
+            <ListView fx:id="crewList" prefHeight="200.0" prefWidth="200.0" />
+            <Label styleClass="labelized" text="Choose Your Pirate" />
+            <ListView fx:id="pirateList" prefHeight="271.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="257.0" layoutY="84.0" prefHeight="534.0" prefWidth="363.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="160.0" prefWidth="336.0">
+               <children>
+                  <ImageView fx:id="flagImage" fitHeight="160.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" styleClass="imagges" />
+                  <Label text="MM" visible="false" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="shipImage" fitHeight="121.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" styleClass="imagges" />
+                        <Label fx:id="shipLabel" styleClass="labelized" text="Label" visible="false" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label text="Label" visible="false" />
+            <HBox alignment="CENTER" prefHeight="357.0" prefWidth="336.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="357.0" prefWidth="209.0">
+                     <children>
+                        <Label fx:id="pirateInfoLabel" styleClass="labelized" text="Label" textAlignment="CENTER" visible="false" />
+                     </children>
+                  </VBox>
+                  <ImageView fx:id="pirateImage" fitHeight="357.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true" styleClass="imagges" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Line endX="-137.0" endY="503.0" layoutX="769.0" layoutY="128.0" startX="-137.0" startY="-128.0" />
+      <Label layoutX="710.0" layoutY="14.0" text="Or Make Your Own!">
          <font>
             <Font size="29.0" />
          </font>
