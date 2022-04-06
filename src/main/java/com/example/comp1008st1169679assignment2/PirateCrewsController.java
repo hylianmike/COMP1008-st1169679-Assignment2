@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -40,8 +41,8 @@ public class PirateCrewsController implements Initializable {
         CrewMember law = new CrewMember("Trafalgar Law", 26, "Captain", 500_000_000, true, "Op-Op Fruit", "Injection Shot", "Gamma Knife", "Pucture Wille");
 
         // creating all the pirate crews
-        PirateCrew strawHats = new PirateCrew("Straw Hat Pirates");
-        PirateCrew heartPirates = new PirateCrew("Heart Pirates");
+        PirateCrew strawHats = new PirateCrew("Straw Hat Pirates", "Thousand Sunny");
+        PirateCrew heartPirates = new PirateCrew("Heart Pirates", "Polar Tang");
 
         // adding the pirates to their respective crews
         strawHats.add(luffy);
@@ -61,7 +62,7 @@ public class PirateCrewsController implements Initializable {
                 // set the list of pirates to be that of the selected crew
                 pirateList.setItems(FXCollections.observableList(newSelection.getCrew()));
                 // set the image of the pirate to the first one in the list
-                pirateImage.setImage(newSelection.getCrew().get(0).getImage());
+                pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getCrew().get(0).getImage()).toExternalForm())));
             }
             catch (NullPointerException ignored){}
         });
@@ -70,9 +71,11 @@ public class PirateCrewsController implements Initializable {
         pirateList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSelection, newSelection) -> {
             try{
                 // set the image to the pirate object that is selected
-                pirateImage.setImage(newSelection.getImage());
+                pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getImage()).toExternalForm())));
             }
             catch (NullPointerException ignored){}
         });
     }
 }
+
+//         image = new Image(getClass().getResource(String.format("img/people/%s.png", name.split(" ")[name.split(" ").length - 1].toLowerCase())).toExternalForm());

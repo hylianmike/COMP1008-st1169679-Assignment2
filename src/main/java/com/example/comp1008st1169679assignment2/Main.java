@@ -20,6 +20,8 @@ public class Main extends Application {
 
     // main method that launches the scene and controller
     public static void main(String[] args) {
-        launch();
+        //launch();
+        CrewMember luffy = new CrewMember("Monkey D. Luffy", 19, "Captain", 1_500_000_000, true, "Gum Gum Fruit (Rubber Man)", "Gum-Gum Pistol", "Red Hawk", "King-Kong Gun");
+        System.out.println(luffy.getAttacks());
     }
 }

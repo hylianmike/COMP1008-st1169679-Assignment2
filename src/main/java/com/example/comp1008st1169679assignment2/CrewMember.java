@@ -17,7 +17,7 @@ public class CrewMember {
     private boolean devilFruit;
     private String power;
     private ArrayList<String> attacks;
-    private Image image;
+    private String imageLocation;
 
     /**
      *
@@ -41,7 +41,7 @@ public class CrewMember {
         setPower(power);
         setAttacks(moves);
         // create the image resource link based off the name parameter
-        image = new Image(getClass().getResource(String.format("img/people/%s.png", name.split(" ")[name.split(" ").length - 1].toLowerCase())).toExternalForm());
+        imageLocation = String.format("img/people/%s.png", this.name.split(" ")[name.split(" ").length - 1].toLowerCase());
     }
 
     /**
@@ -72,6 +72,7 @@ public class CrewMember {
      * @param name Must be at least 2 characters long
      */
     public void setName(String name) {
+        name = name.trim();
         if (name.length() > 1)
             this.name = name;
         else
@@ -114,6 +115,7 @@ public class CrewMember {
      * @param power Must be at least one character long. What good is a pirate if they can't fight?
      */
     public void setPower(String power) {
+        power = power.trim();
         if (power.length() > 0)
             this.power = power;
         else
@@ -161,8 +163,8 @@ public class CrewMember {
      * Getter for the image instance variable
      * @return The image for the pirate in question
      */
-    public Image getImage() {
-        return image;
+    public String getImage() {
+        return imageLocation;
     }
 
     /**
@@ -170,7 +172,9 @@ public class CrewMember {
      * @param attacks As many notable named-attacks that the pirate may use as Strings
      */
     public void setAttacks(String... attacks) {
+        this.attacks.clear();
         for (String move : attacks) {
+            move = move.trim();
             if(move.length() > 1)
                 this.attacks.add(move);
             else

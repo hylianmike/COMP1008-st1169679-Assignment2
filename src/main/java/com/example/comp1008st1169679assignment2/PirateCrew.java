@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PirateCrew {
 
     // name, list of pirates (crew) and jolly roger
-    private String name;
+    private String name, ship;
     private ArrayList<CrewMember> crew;
     private Image flag;
 
@@ -15,20 +15,27 @@ public class PirateCrew {
      * constructor for a Pirate Crew object. creates a new ArrayList for the crew. the parameter is used to render the image for the flag as well
      * @param name must end with "Pirates" and have a name before of at least 2 characters.
      */
-    public PirateCrew(String name){
-        if (name.toLowerCase().endsWith("pirates") && name.split(" ").length > 1){
-            this.name = name;
-        }
+    public PirateCrew(String name, String ship){
+        setName(name);
         crew = new ArrayList<>();
         flag = new Image(getClass().getResource(String.format("img/flags/%s.png", name.toLowerCase().substring(0, name.indexOf(" ")))).toExternalForm());
     }
 
     public void setName(String name) {
-        this.name = name;
+        name = name.trim();
+        if (name.toLowerCase().endsWith("pirates") && name.split(" ").length > 1){
+            this.name = name;
+        }
+        else
+            throw new IllegalArgumentException("Crew name must end with \"Pirates\" and have a name before of at least 2 characters.");
     }
 
-    public void setCrew(ArrayList<CrewMember> crew) {
-        this.crew = crew;
+    public String getShip() {
+        return ship;
+    }
+
+    public void setShip(String ship) {
+        this.ship = ship;
     }
 
     public void setFlag(Image flag) {
