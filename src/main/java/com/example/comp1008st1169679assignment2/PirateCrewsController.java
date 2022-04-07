@@ -76,9 +76,11 @@ public class PirateCrewsController implements Initializable {
     // creating all the pirate crews
     private PirateCrew strawHats = new PirateCrew("Straw Hat Pirates", "Thousand Sunny");
     private PirateCrew heartPirates = new PirateCrew("Heart Pirates", "Polar Tang");
+    private PirateCrew whitebeardPirates = new PirateCrew("Whitebeard Pirates", "Moby Dick");
+    private PirateCrew blackbeardPirates = new PirateCrew("Blackbeard Pirates", "Saber of Xebec");
 
     // making an array of the pirate crews to add to the ListView object
-    private PirateCrew[] crews = new PirateCrew[]{strawHats, heartPirates};
+    private PirateCrew[] crews = new PirateCrew[]{strawHats, heartPirates, whitebeardPirates, blackbeardPirates};
 
     // overridden initialize method
     @Override
@@ -101,11 +103,6 @@ public class PirateCrewsController implements Initializable {
         CrewMember franky = new CrewMember("Franky", 36, "Shipwright", 94_000_000, false, "Cyborg Body", "Franky Radical Beam", "Weapon's Left", "Franky Fireball");
         CrewMember brook = new CrewMember("Brook", 90, "Musician", 83_000_000, true, "Revive-Revive Fruit", "Dawn Song Strike", "Three-Pace Hum:\nNotch Slash", "Soul Parade");
         CrewMember jimbei = new CrewMember("Jimbei", 46, "Helmsman", 438_000_000, false, "Fish-Man Karate", "Murasame Spear Wave", "Vagabond Drill","Demon Brick Fist");
-
-        CrewMember law = new CrewMember("Trafalgar Law", 26, "Captain", 500_000_000, true, "Op-Op Fruit", "Injection Shot", "Gamma Knife", "Puncture Wille");
-
-
-
         // adding the pirates to their respective crews
         strawHats.add(luffy);
         strawHats.add(zoro);
@@ -118,8 +115,46 @@ public class PirateCrewsController implements Initializable {
         strawHats.add(brook);
         strawHats.add(jimbei);
 
-        heartPirates.add(law);
 
+        CrewMember law = new CrewMember("Trafalgar D. Law", 26, "Captain", 500_000_000, true, "Op-Op Fruit", "Injection Shot", "Gamma Knife", "Puncture Wille");
+        CrewMember bepo = new CrewMember("Bepo", 22, "Navigator", 500, false, "Mink Powers", "Sulong Form");
+        CrewMember penguin = new CrewMember("Penguin", 28, "Member", 80_000_000, false, "Martial Arts + Spears");
+        CrewMember shachi = new CrewMember("Shachi", 27, "Member", 79_000_000, false, "Martial Arts + Swords");
+
+        heartPirates.add(law);
+        heartPirates.add(bepo);
+        heartPirates.add(penguin);
+        heartPirates.add(shachi);
+
+        CrewMember newgate = new CrewMember("Edward Newgate", 72, "Captain", 5_046_000_000L, true, "Tremor-Tremor Fruit", "Sea Quake", "Helmet Splitter", "Island Shaking");
+        CrewMember marco = new CrewMember("Marco", 45, "Doctor", 1_374_000_000, true, "Pheonix-Pheonix Fruit", "Undying Thistle", "Phenoix Brand", "Phoenix Pyreapple");
+        CrewMember thatch = new CrewMember("Thatch", 46, "Chef", 500_000_000, false, "Swordsmanship");
+        CrewMember izo = new CrewMember("Izo", 45, "Marksman", 510_000_000, false, "Dual Flintlock Pistols", "Bullet Slicing Rounds");
+        CrewMember oden = new CrewMember("Kozuki Oden", 39, "Archaeologist", 1_000_000_000, false, "Oden: Two-Sword Style", "Paradise Waterfall", "Gun Modoki", "Paradise Totsuka");
+        CrewMember jozu = new CrewMember("Jozu", 42, "Fighter", 700_000_000, true, "Diamond-Diamond Fruit", "Brilliant Punk");
+        CrewMember vista = new CrewMember("Vista", 47, "Fighter", 650_000_000, false, "Two-Sword Style");
+
+        whitebeardPirates.add(newgate);
+        whitebeardPirates.add(marco);
+        whitebeardPirates.add(oden);
+        whitebeardPirates.add(jozu);
+        whitebeardPirates.add(thatch);
+        whitebeardPirates.add(vista);
+        whitebeardPirates.add(izo);
+
+        CrewMember teech = new CrewMember("Marshall D. Teech", 40, "Captain", 2_247_600_000L, true, "Dark-Dark Fruit", "Black Hole", "Liberation", "Black Vortex");
+        CrewMember burgess = new CrewMember("Jesus Burgess", 29, "Helmsman", 150_000_000, false, "Brute Strength", "Shockwave Elbow");
+        CrewMember augur = new CrewMember("Van Augur", 27, "Marksman", 300_000_000, false, "Senriku Rifle");
+        CrewMember lafitte = new CrewMember("Laffitte", 41, "Navigator", 220_000_000, true, "Unknown Devil Fruit");
+        CrewMember docQ = new CrewMember("Doc Q", 28, "Doctor", 350_000_000, false, "Double Sided Scythe");
+        CrewMember shiryu = new CrewMember("Shiryu of the Rain", 44, "Fighter", 1_600_000_000, true, "Clear-Clear Fruit");
+
+        blackbeardPirates.add(teech);
+        blackbeardPirates.add(burgess);
+        blackbeardPirates.add(augur);
+        blackbeardPirates.add(lafitte);
+        blackbeardPirates.add(docQ);
+        blackbeardPirates.add(shiryu);
 
         crewList.setItems(FXCollections.observableArrayList(crews));
         crewListTwo.setItems(FXCollections.observableArrayList(crews));
@@ -164,9 +199,19 @@ public class PirateCrewsController implements Initializable {
                     else
                         crew.add(new CrewMember(nameField.getText(), Integer.parseInt(ageField.getText()), roleComboBox.getValue(), Integer.parseInt(bountyField.getText()), devilFruitCheck.isSelected(), powerTextBox.getText(), attacks));
                 }
-                catch (NullPointerException | IllegalArgumentException ex){
+                catch (NullPointerException npe){
                     errorLabel.setVisible(true);
-                    errorLabel.setText("An already existing Crew must be Selected\nName MUST be at least 2 Characters Long\nAge and Bounty must be a Positive Integer\nA Role MUST be Chosen\nThe Pirate must have a Fighting Style");
+                    errorLabel.setText("An existing crew and\nrole MUST be selected");
+                    return;
+                }
+                catch (NumberFormatException nfe){
+                    errorLabel.setVisible(true);
+                    errorLabel.setText("Age and Bounty fields MUST\nbe positive numerical values");
+                    return;
+                }
+                catch (IllegalArgumentException ex){
+                    errorLabel.setVisible(true);
+                    errorLabel.setText(ex.getMessage());
                     return;
                 }
 
@@ -178,6 +223,7 @@ public class PirateCrewsController implements Initializable {
                 devilFruitCheck.setSelected(false);
                 powerTextBox.clear();
                 attacksTextBox.clear();
+                bountyField.clear();
                 errorLabel.setVisible(false);
             }
         });

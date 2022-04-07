@@ -142,7 +142,7 @@ public class CrewMember {
         }
         return String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n" +
                 "%s%n~Notable Attacks~%n%s",
-                name, age, role, bounty, devilFruit ? String.format("Devil Fruit Power:%n%s", power) : String.format("Fighting Style:%n%s", power), moves);
+                name, age, role, bounty, devilFruit ? String.format("Devil Fruit Power:%n%s", power) : String.format("Fighting Style:%n%s", power), moves.length() > 0 ? moves : "None");
     }
 
     public String getRole() {
@@ -151,7 +151,7 @@ public class CrewMember {
 
     /**
      * Setter for the role instance variable
-     * @param role Must be one of these choices: "Captain", "Fighter", "Navigator", "Doctor", "Chef", "Marksman", "Shipwright", "Helmsman", "Musician", "Archaeologist", "Other"
+     * @param role Must be one of these choices: "Captain", "Fighter", "Navigator", "Doctor", "Chef", "Marksman", "Shipwright", "Helmsman", "Musician", "Archaeologist", "Member"
      */
     public void setRole(String role) {
         if (getValidRoles().contains(role.toLowerCase()))
@@ -169,7 +169,7 @@ public class CrewMember {
     }
 
     public static List<String> getValidRoles() {
-        return Arrays.asList("captain", "fighter", "navigator", "doctor", "chef", "marksman", "shipwright", "helmsman", "musician", "archaeologist", "other");
+        return Arrays.asList("captain", "fighter", "navigator", "doctor", "chef", "marksman", "shipwright", "helmsman", "musician", "archaeologist", "member");
     }
 
     /**
