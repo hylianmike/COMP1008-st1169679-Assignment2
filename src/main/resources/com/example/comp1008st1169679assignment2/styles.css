@@ -11,3 +11,9 @@
 .imagges{
     -fx-effect: dropshadow(three-pass-box, white, 2, 0.7, 0, 0);
 }
+
+.error{
+    -fx-font-size: 20px;
+    -fx-text-fill: red;
+    -fx-effect: dropshadow(three-pass-box, yellow, 2, 5, 0, 0);
+}

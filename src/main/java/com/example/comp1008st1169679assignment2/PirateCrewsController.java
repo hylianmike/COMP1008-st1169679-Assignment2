@@ -64,6 +64,15 @@ public class PirateCrewsController implements Initializable {
     @FXML
     private Button addButton;
 
+    @FXML
+    private TextArea attacksTextBox;
+
+    @FXML
+    private TextField bountyField;
+
+    @FXML
+    private Label errorLabel;
+
     // creating all the pirate crews
     private PirateCrew strawHats = new PirateCrew("Straw Hat Pirates", "Thousand Sunny");
     private PirateCrew heartPirates = new PirateCrew("Heart Pirates", "Polar Tang");
@@ -148,8 +157,19 @@ public class PirateCrewsController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 PirateCrew crew = crewListTwo.getSelectionModel().getSelectedItem();
-                int age = Integer.parseInt(ageField.getText());
-                crew.add(new CrewMember(nameField.getText(), age, roleComboBox.getValue(), age, devilFruitCheck.isSelected(), powerTextBox.getText()));
+                String[] attacks = attacksTextBox.getText().split(", ");
+                try{
+                    if (attacks[0].length() == 0)
+                        crew.add(new CrewMember(nameField.getText(), Integer.parseInt(ageField.getText()), roleComboBox.getValue(), Integer.parseInt(bountyField.getText()), devilFruitCheck.isSelected(), powerTextBox.getText()));
+                    else
+                        crew.add(new CrewMember(nameField.getText(), Integer.parseInt(ageField.getText()), roleComboBox.getValue(), Integer.parseInt(bountyField.getText()), devilFruitCheck.isSelected(), powerTextBox.getText(), attacks));
+                }
+                catch (NullPointerException | IllegalArgumentException ex){
+                    errorLabel.setVisible(true);
+                    errorLabel.setText("An already existing Crew must be Selected\nName MUST be at least 2 Characters Long\nAge and Bounty must be a Positive Integer\nA Role MUST be Chosen\nThe Pirate must have a Fighting Style");
+                    return;
+                }
+
                 crew.getCrew().get(crew.getCrew().size() - 1).setImageLocation("img/people/blank.jpg");
                 crewList.setItems(FXCollections.observableArrayList(crews));
                 nameField.clear();
@@ -157,6 +177,8 @@ public class PirateCrewsController implements Initializable {
                 roleComboBox.getSelectionModel().selectFirst();
                 devilFruitCheck.setSelected(false);
                 powerTextBox.clear();
+                attacksTextBox.clear();
+                errorLabel.setVisible(false);
             }
         });
     }
