@@ -90,8 +90,29 @@ class CrewMemberTest {
         for (String attack : pirate.getAttacks()) {
             moves += attack + "\n";
         }
-        assertEquals(String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %,8d Berries%nDevil Fruit: %s%nSpecial Power: %s%nNotable Attacks: %n%s", pirate.getName(), pirate.getAge(), pirate.getRole(), pirate.getBounty(), pirate.hasDevilFruit() ? "Yes" : "No", pirate.getPower(), moves), pirate.getData());
+        assertEquals(String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s", pirate.getName(), pirate.getAge(), pirate.getRole(), pirate.getBounty(), String.format("Devil Fruit Power:%n%s", pirate.getPower()), moves), pirate.getData());
     }
+
+    @Test
+    void getDataNoDevilFruit() {
+        pirate.setDevilFruit(false);
+        String moves = "";
+        for (String attack : pirate.getAttacks()) {
+            moves += attack + "\n";
+        }
+        assertEquals(String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s", pirate.getName(), pirate.getAge(), pirate.getRole(), pirate.getBounty(), String.format("Fighting Style:%n%s", pirate.getPower()), moves), pirate.getData());
+    }
+
+    @Test
+    void getDataNoAttacks() {
+        pirate.setAttacks();
+        String moves = "";
+        for (String attack : pirate.getAttacks()) {
+            moves += attack + "\n";
+        }
+        assertEquals(String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s", pirate.getName(), pirate.getAge(), pirate.getRole(), pirate.getBounty(), pirate.hasDevilFruit() ? String.format("Devil Fruit Power:%n%s", pirate.getPower()) : String.format("Fighting Style:%n%s", pirate.getPower()), "None"), pirate.getData());
+    }
+
 
     @Test
     void setRole() {
@@ -123,5 +144,18 @@ class CrewMemberTest {
     void setImageConstructor() {
         pirate = new CrewMember("Zoro", 25, "Fighter", 200_000_000, false, "Swordsmanship", "Slice", "Slice and Dice");
         assertEquals("img/people/zoro.png", pirate.getImageLocation());
+    }
+
+    @Test
+    void setImageLocation(){
+        pirate.setImageLocation("img/people/blank.jpg");
+        assertEquals("img/people/blank.jpg", pirate.getImageLocation());
+    }
+
+    @Test
+    void setImageLocationInvalid(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            pirate.setImageLocation("blank.jpg");
+        });
     }
 }

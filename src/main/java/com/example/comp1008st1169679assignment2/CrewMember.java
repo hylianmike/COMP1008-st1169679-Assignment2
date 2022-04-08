@@ -140,8 +140,7 @@ public class CrewMember {
         for (String attack : attacks) {
             moves += attack + "\n";
         }
-        return String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n" +
-                "%s%n~Notable Attacks~%n%s",
+        return String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s",
                 name, age, role, bounty, devilFruit ? String.format("Devil Fruit Power:%n%s", power) : String.format("Fighting Style:%n%s", power), moves.length() > 0 ? moves : "None");
     }
 

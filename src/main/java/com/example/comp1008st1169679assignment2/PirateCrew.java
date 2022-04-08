@@ -21,7 +21,7 @@ public class PirateCrew {
         setShip(ship);
         crew = new ArrayList<>();
         flag = String.format("img/flags/%s.png", this.name.toLowerCase().substring(0, name.indexOf(" ")));
-        shipLocation = String.format("img/ships/%s.png", this.ship.split(" ")[ship.split(" ").length - 1]);
+        shipLocation = String.format("img/ships/%s.png", this.ship.split(" ")[ship.split(" ").length - 1].toLowerCase());
     }
 
     public String getShipLocation() {
