@@ -34,18 +34,27 @@ public class PirateCrew {
 
     /**
      * Setter for the flag instance variable
-     * @param flag - file path to the flag image
+     * @param flag - file path to the flag image, must start with "img/flags/"
      */
     public void setFlag(String flag) {
-        this.flag = flag;
+        flag = flag.trim();
+        if (flag.startsWith("img/flags/"))
+            this.flag = flag;
+        else
+            throw new IllegalArgumentException("Flag file path must be in the \"img/flags\" directory");
     }
 
     /**
      * Setter for the image location of the ship image
-     * @param shipLocation - file path for ship image
+     * @param shipLocation - file path for ship image, must start with "img/ships/"
      */
     public void setShipLocation(String shipLocation) {
-        this.shipLocation = shipLocation;
+        shipLocation = shipLocation.trim();
+        if (shipLocation.startsWith("img/ships/"))
+            this.shipLocation = shipLocation;
+        else
+            throw new IllegalArgumentException("Flag file path must be in the \"img/ships\" directory");
+
     }
 
     /**

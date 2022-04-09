@@ -3,17 +3,22 @@ package com.example.comp1008st1169679assignment2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PirateCrewTest {
 
     private PirateCrew crew;
+    private CrewMember luffy = new CrewMember("Luffy", 20, "Captain", 100_000_000, true, "Human-Human Fruit", "Punch", "Kick", "Headbutt");
+    private CrewMember zoro = new CrewMember("Zoro", 25, "Fighter", 200_000_000, false, "Swordsmanship", "Slice", "Slice and Dice");
 
     @BeforeEach
     void setUp() {
         crew = new PirateCrew("Straw Hat Pirates", "Sunny");
-        crew.add(new CrewMember("Luffy", 20, "Captain", 100_000_000, true, "Human-Human Fruit", "Punch", "Kick", "Headbutt"));
-        crew.add(new CrewMember("Zoro", 25, "Fighter", 200_000_000, false, "Swordsmanship", "Slice", "Slice and Dice"));
+        crew.add(luffy);
+        crew.add(zoro);
     }
 
     @Test
@@ -66,12 +71,34 @@ class PirateCrewTest {
     }
 
     @Test
-    void getFlag(){
-        assertEquals("img/flags/straw.png", crew.getFlag());
+    void setFlag(){
+        crew.setFlag("img/flags/heart.png");
+        assertEquals("img/flags/heart.png", crew.getFlag());
     }
 
     @Test
-    void getShipLocation(){
-        assertEquals("img/ships/sunny.png", crew.getShipLocation());
+    void setFlagInvalid(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            crew.setFlag("heart.png");
+        });
+    }
+
+    @Test
+    void setShipLocation(){
+        crew.setShipLocation("img/ships/tang.png");
+        assertEquals("img/ships/tang.png", crew.getShipLocation());
+    }
+
+    @Test
+    void setShipLocationInvalid(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            crew.setShipLocation("tang.png");
+        });
+    }
+
+    @Test
+    void setCrew(){
+        crew.setCrew(new ArrayList<>(List.of(new CrewMember[]{zoro, luffy})));
+        assertEquals(new ArrayList<>(List.of(new CrewMember[]{zoro, luffy})), crew.getCrew());
     }
 }
