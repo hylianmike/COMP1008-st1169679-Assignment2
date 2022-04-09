@@ -29,3 +29,9 @@
     -fx-font-size: 20px;
     -fx-underline: true;
 }
+/* make the color of the add button blue */
+.addButton{
+    -fx-background-color: cyan;
+    -fx-border-color: blue;
+    -fx-border-radius: 3px;
+}

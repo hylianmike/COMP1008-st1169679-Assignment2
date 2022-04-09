@@ -140,7 +140,7 @@
                               <Label text="Label" visible="false" />
                               <TextField fx:id="powerTextBox" prefHeight="25.0" prefWidth="345.0" promptText="How does this Pirate Fight?" />
                               <Label text="Label" visible="false" />
-                              <Button fx:id="addButton" mnemonicParsing="false" text="Add To Crew!" />
+                              <Button fx:id="addButton" mnemonicParsing="false" styleClass="addButton" text="Add To Crew!" />
                               <Label text="Label" visible="false" />
                               <TextArea fx:id="attacksTextBox" prefHeight="66.0" prefWidth="351.0" promptText="Add Any Notable Attacks Here. Separate them with a comma and space. Ex. Right Punch, Left Kick" />
                            </children>
