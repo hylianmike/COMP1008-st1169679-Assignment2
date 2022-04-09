@@ -1,19 +1,31 @@
+/* root for the whole app. setthe background and make it take up the whol screen*/
 .root {
     -fx-background-image: url('img/background.jpg');
+    -fx-background-size: cover;
     -fx-background-position: center center;
 }
-
+/* for label text in the app */
 .labelized{
     -fx-font-size: 16px;
     -fx-effect: dropshadow(three-pass-box, white, 2, 0.7, 0, 0);
 }
-
+/* add a white dropshadow on all images*/
 .imagges{
     -fx-effect: dropshadow(three-pass-box, white, 2, 0.7, 0, 0);
 }
-
+/* special styling for the error text to make it very scary*/
 .error{
     -fx-font-size: 20px;
     -fx-text-fill: red;
     -fx-effect: dropshadow(three-pass-box, yellow, 2, 5, 0, 0);
+}
+/* for the titles at the top of the app */
+.title-label{
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, lightgoldenrodyellow, 2, 0.7, 0, 0);
+}
+/* for the crew and pirate name labels, so that they stand apart from the rest of the non-title text */
+.name{
+    -fx-font-size: 20px;
+    -fx-underline: true;
 }

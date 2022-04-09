@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -7,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,7 +18,7 @@
 
 <AnchorPane prefHeight="631.0" prefWidth="1022.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp1008st1169679assignment2.PirateCrewsController">
    <children>
-      <HBox prefHeight="631.5" prefWidth="1022.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="633.0" prefWidth="1022.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="632.0" prefWidth="631.0">
                <children>
@@ -24,14 +26,24 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Choose Your One Piece Character...">
+                              <Label styleClass="title-label" text="Choose Your ">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="49.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" styleClass="title-label">
+                                 <image>
+                                    <Image url="@img/logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="title-label" text=" Character">
                                  <font>
                                     <Font size="29.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="598.0" prefWidth="630.0" style="-fx-padding: 20px;">
+                        <HBox alignment="CENTER" prefHeight="601.0" prefWidth="630.0" style="-fx-padding: 10px;">
                            <children>
                               <VBox alignment="CENTER" prefHeight="534.0" prefWidth="174.0" styleClass="listBox">
                                  <children>
@@ -42,8 +54,14 @@
                                  </children>
                               </VBox>
                               <Label text="Label" visible="false" />
-                              <VBox prefHeight="537.0" prefWidth="393.0">
+                              <VBox alignment="CENTER" prefHeight="537.0" prefWidth="393.0">
                                  <children>
+                                    <Label fx:id="crewLabel" text="Crew Label" visible="false">
+                                       <styleClass>
+                                          <String fx:value="labelized" />
+                                          <String fx:value="name" />
+                                       </styleClass>
+                                    </Label>
                                     <HBox alignment="CENTER" prefHeight="160.0" prefWidth="336.0">
                                        <children>
                                           <ImageView fx:id="flagImage" fitHeight="160.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" styleClass="imagges" />
@@ -51,17 +69,23 @@
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <ImageView fx:id="shipImage" fitHeight="121.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" styleClass="imagges" />
-                                                <Label fx:id="shipLabel" styleClass="labelized" text="Label" visible="false" />
+                                                <Label fx:id="shipLabel" styleClass="labelized" text="Ship Name" visible="false" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <Label text="Label" visible="false" />
+                                    <Label fx:id="totalBountyLabel" styleClass="labelized" text="Label" visible="false" />
                                     <HBox alignment="CENTER" prefHeight="357.0" prefWidth="336.0">
                                        <children>
                                           <VBox alignment="CENTER" prefHeight="357.0" prefWidth="209.0">
                                              <children>
-                                                <Label fx:id="pirateInfoLabel" styleClass="labelized" text="Label" textAlignment="CENTER" visible="false" />
+                                                <Label fx:id="pirateNameLabel" text="Name" textAlignment="CENTER" visible="false">
+                                                   <styleClass>
+                                                      <String fx:value="labelized" />
+                                                      <String fx:value="name" />
+                                                   </styleClass>
+                                                </Label>
+                                                <Label fx:id="pirateInfoLabel" styleClass="labelized" text="Data" textAlignment="CENTER" visible="false" />
                                              </children>
                                           </VBox>
                                           <ImageView fx:id="pirateImage" fitHeight="357.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true" styleClass="imagges" HBox.hgrow="NEVER" />
@@ -75,14 +99,14 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <Line endX="-137.0" endY="503.0" startX="-137.0" startY="-128.0" />
+            <Line endX="-136.7071075439453" endY="511.29290771484375" startX="-137.0" startY="-128.0" />
             <AnchorPane prefHeight="632.0" prefWidth="392.0">
                <children>
-                  <VBox prefHeight="632.0" prefWidth="391.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER" prefHeight="632.0" prefWidth="391.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="391.0">
                            <children>
-                              <Label text="Or Make Your Own!">
+                              <Label styleClass="title-label" text="Or Make Your Own!">
                                  <font>
                                     <Font size="29.0" />
                                  </font>
@@ -112,7 +136,7 @@
                         </HBox>
                         <VBox alignment="CENTER" prefHeight="198.0" prefWidth="362.0" style="-fx-padding: 10px;">
                            <children>
-                              <CheckBox fx:id="devilFruitCheck" mnemonicParsing="false" text="Do They Have a Devil Fruit Ability?" />
+                              <CheckBox fx:id="devilFruitCheck" mnemonicParsing="false" styleClass="labelized" text="Do They Have a Devil Fruit Ability?" />
                               <Label text="Label" visible="false" />
                               <TextField fx:id="powerTextBox" prefHeight="25.0" prefWidth="345.0" promptText="How does this Pirate Fight?" />
                               <Label text="Label" visible="false" />

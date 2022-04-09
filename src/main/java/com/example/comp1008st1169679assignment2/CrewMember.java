@@ -1,8 +1,5 @@
 package com.example.comp1008st1169679assignment2;
 
-import javafx.scene.image.Image;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +17,6 @@ public class CrewMember {
     private String imageLocation;
 
     /**
-     *
      * Constructor for a pirate
      * @param name Name of the pirate
      * @param age Age of the pirate
@@ -63,6 +59,10 @@ public class CrewMember {
             throw new IllegalArgumentException("Bounty cannot be negative.");
     }
 
+    /**
+     * Getter for the name instance variable
+     * @return the String value of the pirate's name
+     */
     public String getName() {
         return name;
     }
@@ -79,6 +79,10 @@ public class CrewMember {
             throw new IllegalArgumentException("Name must be at least two characters long");
     }
 
+    /**
+     * Getter for the age instance variable
+     * @return the age of the pirate in an integer
+     */
     public int getAge() {
         return age;
     }
@@ -94,6 +98,10 @@ public class CrewMember {
             throw new IllegalArgumentException("Character must be born");
     }
 
+    /**
+     * Getter for the devilFruit instance variable
+     * @return a boolean value that corresponds to if the pirate has a devil fruit ability or not
+     */
     public boolean hasDevilFruit() {
         return devilFruit;
     }
@@ -106,6 +114,10 @@ public class CrewMember {
         this.devilFruit = devilFruit;
     }
 
+    /**
+     * Getter for the power instance variable
+     * @return the String value of the pirate's method of combat
+     */
     public String getPower() {
         return power;
     }
@@ -136,14 +148,18 @@ public class CrewMember {
      * @return a String containing all information pertaining to the pirate
      */
     public String getData(){
-        String moves = "";
+        StringBuilder moves = new StringBuilder();
         for (String attack : attacks) {
-            moves += attack + "\n";
+            moves.append(attack).append("\n");
         }
-        return String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s",
-                name, age, role, bounty, devilFruit ? String.format("Devil Fruit Power:%n%s", power) : String.format("Fighting Style:%n%s", power), moves.length() > 0 ? moves : "None");
+        return String.format("Age: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s",
+                age, role, bounty, devilFruit ? String.format("Devil Fruit Power:%n%s", power) : String.format("Fighting Style:%n%s", power), moves.length() > 0 ? moves.toString() : "None As Of Yet");
     }
 
+    /**
+     * Getter for the pirate's role on the crew
+     * @return The role String value
+     */
     public String getRole() {
         return role;
     }
@@ -159,6 +175,10 @@ public class CrewMember {
             throw new IllegalArgumentException("Role must be one of these: " + getValidRoles());
     }
 
+    /**
+     * setter for the image location for the pirate
+     * @param imageLocation - file path to the image. Must start with "img/people/" and the image must be in that folder in the resources directory
+     */
     public void setImageLocation(String imageLocation) {
         imageLocation = imageLocation.trim();
         if (imageLocation.startsWith("img/people/"))
@@ -167,13 +187,17 @@ public class CrewMember {
             throw new IllegalArgumentException("File path must be in the img/peoples directory");
     }
 
+    /**
+     * static method that gets the valid roles on a crew
+     * @return - "captain", "fighter", "navigator", "doctor", "chef", "marksman", "shipwright", "helmsman", "musician", "archaeologist", "member"
+     */
     public static List<String> getValidRoles() {
         return Arrays.asList("captain", "fighter", "navigator", "doctor", "chef", "marksman", "shipwright", "helmsman", "musician", "archaeologist", "member");
     }
 
     /**
-     * Getter for the image instance variable
-     * @return The image for the pirate in question
+     * Getter for the image location
+     * @return The file path for the pirate's image
      */
     public String getImageLocation() {
         return imageLocation;
@@ -194,6 +218,10 @@ public class CrewMember {
         }
     }
 
+    /**
+     * Getter for the pirate's attacks
+     * @return the notable named attacks that the pirate uses in an ArrayList of Strings
+     */
     public ArrayList<String> getAttacks() {
         return attacks;
     }

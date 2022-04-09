@@ -110,7 +110,7 @@ class CrewMemberTest {
         for (String attack : pirate.getAttacks()) {
             moves += attack + "\n";
         }
-        assertEquals(String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s", pirate.getName(), pirate.getAge(), pirate.getRole(), pirate.getBounty(), pirate.hasDevilFruit() ? String.format("Devil Fruit Power:%n%s", pirate.getPower()) : String.format("Fighting Style:%n%s", pirate.getPower()), "None"), pirate.getData());
+        assertEquals(String.format("Name: %s%nAge: %s%nRole: %s%nBounty: %n%,d Berries%n%n%s%n~Notable Attacks~%n%s", pirate.getName(), pirate.getAge(), pirate.getRole(), pirate.getBounty(), pirate.hasDevilFruit() ? String.format("Devil Fruit Power:%n%s", pirate.getPower()) : String.format("Fighting Style:%n%s", pirate.getPower()), "None As Of Yet"), pirate.getData());
     }
 
 

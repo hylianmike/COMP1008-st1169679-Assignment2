@@ -24,10 +24,42 @@ public class PirateCrew {
         shipLocation = String.format("img/ships/%s.png", this.ship.split(" ")[ship.split(" ").length - 1].toLowerCase());
     }
 
+    /**
+     * Setter for the members of the crew
+     * @param crew - ArrayList of CrewMembers to be set to the object
+     */
+    public void setCrew(ArrayList<CrewMember> crew) {
+        this.crew = crew;
+    }
+
+    /**
+     * Setter for the flag instance variable
+     * @param flag - file path to the flag image
+     */
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    /**
+     * Setter for the image location of the ship image
+     * @param shipLocation - file path for ship image
+     */
+    public void setShipLocation(String shipLocation) {
+        this.shipLocation = shipLocation;
+    }
+
+    /**
+     * Getter for the ship location
+     * @return the file path to the corresponding ship image
+     */
     public String getShipLocation() {
         return shipLocation;
     }
 
+    /**
+     * Setter for the name instance variable
+     * @param name - name of the pirate crew. must be called the "______ pirates", where the blank can be filled with anything
+     */
     public void setName(String name) {
         name = name.trim();
         if (name.toLowerCase().endsWith("pirates") && name.split(" ").length > 1){
@@ -37,10 +69,18 @@ public class PirateCrew {
             throw new IllegalArgumentException("Crew name must end with \"Pirates\" and have a name before of at least 2 characters.");
     }
 
+    /**
+     * Getter for the ship name
+     * @return the name of the ship of the crew
+     */
     public String getShip() {
         return ship;
     }
 
+    /**
+     * Setter for the ship instance variable
+     * @param ship - name of the pirate ship. Must be at least 2 characters long
+     */
     public void setShip(String ship) {
         ship = ship.trim();
         if (ship.length() > 1){
@@ -50,6 +90,10 @@ public class PirateCrew {
             throw new IllegalArgumentException("Ship name must be at least 2 characters.");
     }
 
+    /**
+     * Getter for the name of the crew
+     * @return the name of the crew
+     */
     public String getName() {
         return name;
     }
@@ -72,8 +116,8 @@ public class PirateCrew {
     }
 
     /**
-     * method to get the flag image
-     * @return the image of the object (The crew's jolly roger)
+     * method to get the flag image location
+     * @return the file location of the flag image
      */
     public String getFlag() {
         return flag;

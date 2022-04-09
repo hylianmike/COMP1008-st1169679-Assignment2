@@ -73,6 +73,15 @@ public class PirateCrewsController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private Label crewLabel;
+
+    @FXML
+    private Label pirateNameLabel;
+
+    @FXML
+    private Label totalBountyLabel;
+
     // creating all the pirate crews
     private PirateCrew strawHatPirates = new PirateCrew("Straw Hat Pirates", "Thousand Sunny");
     private PirateCrew heartPirates = new PirateCrew("Heart Pirates", "Polar Tang");
@@ -186,6 +195,9 @@ public class PirateCrewsController implements Initializable {
         // this will run whenever a different item is selected in the list of crews
         crewList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSelection, newSelection) -> {
             try{
+                // set the crew name label on, and make it the name of the crew
+                crewLabel.setVisible(true);
+                crewLabel.setText(newSelection.getName());
                 // turn the ship label on and set it to the ship's name
                 shipLabel.setVisible(true);
                 shipLabel.setText(newSelection.getShip());
@@ -195,10 +207,16 @@ public class PirateCrewsController implements Initializable {
                 pirateList.setItems(FXCollections.observableList(newSelection.getCrew()));
                 // set the image of the pirate to the first one in the list
                 pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getCrew().get(0).getImageLocation()).toExternalForm())));
+                // set the name and data of the first pirate
+                pirateNameLabel.setVisible(true);
                 pirateInfoLabel.setVisible(true);
+                pirateNameLabel.setText(newSelection.getCrew().get(0).getName());
                 pirateInfoLabel.setText(newSelection.getCrew().get(0).getData());
                 // set the ship ImageView to the corresponding pirate ship
                 shipImage.setImage(new Image(getClass().getResource(newSelection.getShipLocation()).toExternalForm()));
+                // show the total bounty of the crew
+                totalBountyLabel.setVisible(true);
+                totalBountyLabel.setText(String.format("Total Bounty: %,d Berries", newSelection.getTotalBounty()));
             }
             // ignore any null pointer exception
             catch (NullPointerException ignored){}
@@ -207,8 +225,9 @@ public class PirateCrewsController implements Initializable {
         // this will run whenever a different item is selected in the list of pirates
         pirateList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSelection, newSelection) -> {
             try{
-                // set the image and text box to the pirate object that is selected
+                // set the image, name box, and data text box to the pirate object that is selected
                 pirateImage.setImage(new Image(String.valueOf(getClass().getResource(newSelection.getImageLocation()).toExternalForm())));
+                pirateNameLabel.setText(newSelection.getName());
                 pirateInfoLabel.setText(newSelection.getData());
             }
             // ignore any null pointer exception
@@ -259,6 +278,7 @@ public class PirateCrewsController implements Initializable {
             powerTextBox.clear();
             attacksTextBox.clear();
             bountyField.clear();
+            // set the error label back to invisible
             errorLabel.setVisible(false);
         });
     }
